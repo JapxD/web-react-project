@@ -5,7 +5,7 @@ interface NavigationProps {
 
 const Navigation = ({ searchQuery, setSearchQuery }: NavigationProps) => {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary mb-3 mt-2">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           My Movies
