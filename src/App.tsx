@@ -5,10 +5,12 @@ import Favorites from "./pages/Favorites";
 const App = () => {
   return (
     <main>
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/favorites" element={<Favorites />}></Route>
-      </Routes>
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/favorites" element={<Favorites />}></Route>
+        </Routes>
+      </div>
     </main>
   );
 };

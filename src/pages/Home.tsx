@@ -49,13 +49,13 @@ const Home = () => {
     }
   };
   return (
-    <div className="container">
+    <>
       <Navigation
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         handleSearch={handleSearch}
       />
-      <div className="row">
+      <div className="row row-cols-auto">
         {error && <div>{error}</div>}
         {loading ? (
           <div>Loading... </div>
@@ -70,7 +70,7 @@ const Home = () => {
           ))
         )}
       </div>
-    </div>
+    </>
   );
 };
 

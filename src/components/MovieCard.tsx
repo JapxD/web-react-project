@@ -11,19 +11,61 @@ const MovieCard = ({ poster_path, title, release_date }: MovieCardProp) => {
   };
 
   return (
-    <div className="col-lg-3 col-md-4 col-sm-6 mb-2 mb-sm-1">
-      <div className="card" style={{ width: "18rem" }}>
+    <div className="col">
+      <div
+        className="card mb-2 mt-2"
+        style={{ width: "15rem", position: "relative" }}
+      >
         <img
           src={"https://image.tmdb.org/t/p/w500" + poster_path}
           alt={title}
           className="card-img-top img-fluid p-2"
+          style={{
+            height: "20rem",
+            objectFit: "cover",
+          }}
         ></img>
-        <div className="card-body">
-          <button className="favorite-btn" onClick={onFavoriteClick}>
-            ♥
-          </button>
-          <h3>{title}</h3>
-          <p>Release Date: {release_date}</p>
+        <button
+          className="btn btn-sm btn-outline-danger rounded-circle"
+          style={{
+            width: "2rem",
+            height: "2rem",
+            position: "absolute",
+            top: "15px",
+            right: "15px",
+          }}
+          onClick={onFavoriteClick}
+        >
+          ♥
+        </button>
+        <div
+          className="card-body p-2 pt-0"
+          style={{
+            height: "5rem",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <p
+            className="card-title fw-normal"
+            style={{
+              margin: 0,
+              fontSize: "0.9rem",
+            }}
+          >
+            {title}
+          </p>
+          <p
+            className="card-text fw-light"
+            style={{
+              margin: 0,
+              fontSize: "0.8rem",
+            }}
+          >
+            {release_date.slice(0, 4)}
+          </p>
         </div>
       </div>
     </div>
