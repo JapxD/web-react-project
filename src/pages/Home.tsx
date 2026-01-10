@@ -14,7 +14,7 @@ const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const loadPopularMovies = async () => {
@@ -40,6 +40,7 @@ const Home = () => {
     try {
       const searchResults = await searchMovies(searchQuery);
       setMovies(searchResults);
+      setError(null);
     } catch (err) {
       console.error(err);
       setError("Failed to load movies...");
