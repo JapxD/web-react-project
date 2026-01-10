@@ -22,7 +22,7 @@ const MovieCard = ({ poster_path, title, release_date }: MovieCardProp) => {
           className="card-img-top img-fluid p-2"
           style={{
             height: "20rem",
-            objectFit: "cover",
+            objectFit: "fill",
           }}
         ></img>
         <button
