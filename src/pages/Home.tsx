@@ -33,18 +33,19 @@ const Home = () => {
   }, [searchQuery]);
   return (
     <div className="container text-center">
-      <Navigation />
+      <Navigation searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <div className="row">
-        {movies.map((item) => (
-          <div className="col-sm-3 mb-2 mb-sm-1">
-            <MovieCard
-              key={item.id}
-              poster_path={item.poster_path}
-              title={item.title}
-              release_date={item.release_date}
-            />
-          </div>
-        ))}
+        {movies.map(
+          (movie) =>
+            movie.title.toLowerCase().includes(searchQuery) && (
+              <MovieCard
+                key={movie.id}
+                poster_path={movie.poster_path}
+                title={movie.title}
+                release_date={movie.release_date}
+              />
+            )
+        )}
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
 interface NavigationProps {
-  onSearch?: (search: string) => void;
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
 }
 
-const Navigation = ({ onSearch }: NavigationProps) => {
+const Navigation = ({ searchQuery, setSearchQuery }: NavigationProps) => {
   // handlers
 
   return (
@@ -77,6 +78,8 @@ const Navigation = ({ onSearch }: NavigationProps) => {
               type="search"
               placeholder="Search"
               aria-label="Search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
             <button className="btn btn-outline-success" type="submit">
               Search
