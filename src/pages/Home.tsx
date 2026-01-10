@@ -49,7 +49,7 @@ const Home = () => {
     }
   };
   return (
-    <div className="container text-center">
+    <div className="container">
       <Navigation
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
