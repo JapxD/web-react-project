@@ -28,21 +28,46 @@ const Home = () => {
         setLoading(false);
       }
     };
-
     loadPopularMovies();
   }, [searchQuery]);
+
+  // Handlers
+  const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (loading) return;
+    setLoading(true);
+
+    try {
+      const searchResults = await searchMovies(searchQuery);
+      setMovies(searchResults);
+    } catch (err) {
+      console.error(err);
+      setError("Failed to load movies...");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="container text-center">
-      <Navigation searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <Navigation
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        handleSearch={handleSearch}
+      />
       <div className="row">
-        {movies.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            poster_path={movie.poster_path}
-            title={movie.title}
-            release_date={movie.release_date}
-          />
-        ))}
+        {error && <div>{error}</div>}
+        {loading ? (
+          <div>Loading... </div>
+        ) : (
+          movies.map((movie) => (
+            <MovieCard
+              key={movie.id}
+              poster_path={movie.poster_path}
+              title={movie.title}
+              release_date={movie.release_date}
+            />
+          ))
+        )}
       </div>
     </div>
   );

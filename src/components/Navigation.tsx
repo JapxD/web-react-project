@@ -1,9 +1,14 @@
 interface NavigationProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
+  handleSearch?: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const Navigation = ({ searchQuery, setSearchQuery }: NavigationProps) => {
+const Navigation = ({
+  searchQuery,
+  setSearchQuery,
+  handleSearch,
+}: NavigationProps) => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary mb-3 mt-2">
       <div className="container-fluid">
@@ -34,7 +39,7 @@ const Navigation = ({ searchQuery, setSearchQuery }: NavigationProps) => {
               </a>
             </li>
           </ul>
-          <form className="d-flex" role="search">
+          <form className="d-flex" role="search" onSubmit={handleSearch}>
             <input
               className="form-control me-2"
               type="search"
