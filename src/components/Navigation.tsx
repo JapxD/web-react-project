@@ -4,8 +4,6 @@ interface NavigationProps {
 }
 
 const Navigation = ({ searchQuery, setSearchQuery }: NavigationProps) => {
-  // handlers
-
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
