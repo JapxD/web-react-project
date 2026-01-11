@@ -32,4 +32,7 @@ Users can view popular movies, search for their favorites, and save movies local
 ## 📸 Screenshots
 
 ![Home Page](./screenshots/home.png)  
-_Browse popular movies and sear_
+_Browse popular movies and search_
+
+![Favorites Page](./screenshots/favorites.png)  
+_Saved favorites_
