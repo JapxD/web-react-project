@@ -1,13 +1,24 @@
+import { useMovieContext } from "../contexts/MovieContext";
+
 interface MovieCardProp {
+  id: number;
   poster_path: string;
   title: string;
   release_date: string;
 }
 
-const MovieCard = ({ poster_path, title, release_date }: MovieCardProp) => {
+const MovieCard = ({ id, poster_path, title, release_date }: MovieCardProp) => {
+  const { isFavorite, addToFavorites, removeFromFavorites } = useMovieContext();
+  const movie: MovieCardProp = { id, poster_path, title, release_date };
+  const favorite = isFavorite(id);
   // Handlers
-  const onFavoriteClick = () => {
-    alert(title);
+  const onFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault;
+    if (!favorite) {
+      addToFavorites(movie);
+    } else {
+      removeFromFavorites(movie.id);
+    }
   };
 
   return (
@@ -26,7 +37,9 @@ const MovieCard = ({ poster_path, title, release_date }: MovieCardProp) => {
           }}
         ></img>
         <button
-          className="btn btn-sm btn-outline-danger rounded-circle"
+          className={`btn btn-sm ${
+            favorite ? "btn-danger" : "btn-light"
+          } rounded-circle`}
           style={{
             width: "2rem",
             height: "2rem",
