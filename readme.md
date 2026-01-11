@@ -55,7 +55,7 @@ npm install
 3. Create a .env file in the root:
 
 ```bash
-Create a .env file in the root:
+VITE_TMDB_API_KEY=your_api_key_here
 ```
 
 4. Run the development server:
