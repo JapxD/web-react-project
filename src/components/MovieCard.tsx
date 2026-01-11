@@ -1,24 +1,22 @@
 import { useMovieContext } from "../contexts/MovieContext";
 
-interface MovieCardProp {
-  id: number;
-  poster_path: string;
-  title: string;
-  release_date: string;
+interface MovieCardProps {
+  movie: {
+    id: number;
+    poster_path: string;
+    title: string;
+    release_date: string;
+  };
 }
 
-const MovieCard = ({ id, poster_path, title, release_date }: MovieCardProp) => {
+const MovieCard = ({ movie }: MovieCardProps) => {
   const { isFavorite, addToFavorites, removeFromFavorites } = useMovieContext();
-  const movie: MovieCardProp = { id, poster_path, title, release_date };
-  const favorite = isFavorite(id);
-  // Handlers
+  const favorite = isFavorite(movie.id);
+
   const onFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault;
-    if (!favorite) {
-      addToFavorites(movie);
-    } else {
-      removeFromFavorites(movie.id);
-    }
+    e.preventDefault();
+    if (!favorite) addToFavorites(movie);
+    else removeFromFavorites(movie); // remove accepts Movie object for consistency
   };
 
   return (
@@ -28,14 +26,11 @@ const MovieCard = ({ id, poster_path, title, release_date }: MovieCardProp) => {
         style={{ width: "15rem", position: "relative" }}
       >
         <img
-          src={"https://image.tmdb.org/t/p/w500" + poster_path}
-          alt={title}
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          alt={movie.title}
           className="card-img-top img-fluid p-2"
-          style={{
-            height: "20rem",
-            objectFit: "fill",
-          }}
-        ></img>
+          style={{ height: "20rem", objectFit: "fill" }}
+        />
         <button
           className={`btn btn-sm ${
             favorite ? "btn-danger" : "btn-light"
@@ -63,21 +58,15 @@ const MovieCard = ({ id, poster_path, title, release_date }: MovieCardProp) => {
         >
           <p
             className="card-title fw-normal"
-            style={{
-              margin: 0,
-              fontSize: "0.9rem",
-            }}
+            style={{ margin: 0, fontSize: "0.9rem" }}
           >
-            {title}
+            {movie.title}
           </p>
           <p
             className="card-text fw-light"
-            style={{
-              margin: 0,
-              fontSize: "0.8rem",
-            }}
+            style={{ margin: 0, fontSize: "0.8rem" }}
           >
-            {release_date.slice(0, 4)}
+            {movie.release_date ? movie.release_date.slice(0, 4) : "N/A"}
           </p>
         </div>
       </div>

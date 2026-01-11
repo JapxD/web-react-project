@@ -3,7 +3,7 @@ import { createContext, useState, useContext, useEffect } from "react";
 interface MovieContextType {
   favorites: Movie[];
   addToFavorites: (movie: Movie) => void;
-  removeFromFavorites: (movieId: number) => void;
+  removeFromFavorites: (movie: Movie) => void;
   isFavorite: (movieId: number) => boolean;
 }
 
@@ -49,8 +49,8 @@ export const MovieProvider = ({ children }: MovieProviderProps) => {
     );
   };
 
-  const removeFromFavorites = (movieId: number) => {
-    setFavorites((prev) => prev.filter((fav) => fav.id !== movieId));
+  const removeFromFavorites = (movie: Movie) => {
+    setFavorites((prev) => prev.filter((fav) => fav.id !== movie.id));
   };
 
   const isFavorite = (movieId: number) => {

@@ -19,6 +19,8 @@ const Home = () => {
   useEffect(() => {
     const loadPopularMovies = async () => {
       try {
+        setError(null);
+        setLoading(true);
         const popularMovies = await fetchPopularMovies();
         setMovies(popularMovies);
       } catch (err) {
@@ -29,16 +31,22 @@ const Home = () => {
       }
     };
     loadPopularMovies();
-  }, [searchQuery]);
+  }, []);
 
   // Handlers
   const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (loading) return;
     setLoading(true);
+    setError(null);
 
     try {
-      const searchResults = await searchMovies(searchQuery);
+      let searchResults: Movie[];
+      if (searchQuery) {
+        searchResults = await searchMovies(searchQuery);
+      } else {
+        searchResults = await fetchPopularMovies();
+      }
       setMovies(searchResults);
       setError(null);
     } catch (err) {
@@ -55,22 +63,19 @@ const Home = () => {
         setSearchQuery={setSearchQuery}
         handleSearch={handleSearch}
       />
-      <div className="row row-cols-auto">
-        {error && <div>{error}</div>}
-        {loading ? (
-          <div>Loading... </div>
-        ) : (
-          movies.map((movie) => (
-            <MovieCard
-              key={movie.id}
-              id={movie.id}
-              poster_path={movie.poster_path}
-              title={movie.title}
-              release_date={movie.release_date}
-            />
-          ))
-        )}
-      </div>
+
+      {error && <div>{error}</div>}
+      {loading ? (
+        <div>Loading... </div>
+      ) : movies.length > 0 ? (
+        <div className="row row-cols-auto">
+          {movies.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+        </div>
+      ) : (
+        <div>No movies found</div>
+      )}
     </>
   );
 };

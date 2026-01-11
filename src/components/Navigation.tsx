@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 interface NavigationProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
@@ -9,12 +11,21 @@ const Navigation = ({
   setSearchQuery,
   handleSearch,
 }: NavigationProps) => {
+  // Handlers
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleSearch?.(e);
+  };
+
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary mb-2 mt-2">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+        <NavLink className="navbar-brand" to="/">
           My Movies
-        </a>
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"
@@ -29,24 +40,34 @@ const Navigation = ({
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${isActive ? "active fw-bold" : ""}`
+                }
+                to="/"
+              >
                 Home
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/favorites">
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${isActive ? "active fw-bold" : ""}`
+                }
+                to="/favorites"
+              >
                 Favorites
-              </a>
+              </NavLink>
             </li>
           </ul>
-          <form className="d-flex" role="search" onSubmit={handleSearch}>
+          <form className="d-flex" role="search" onSubmit={onSubmit}>
             <input
               className="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={onInputChange}
             />
             <button className="btn btn-outline-success" type="submit">
               Search
