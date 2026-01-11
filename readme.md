@@ -35,4 +35,31 @@ Users can view popular movies, search for their favorites, and save movies local
 _Browse popular movies and search_
 
 ![Favorites Page](./screenshots/favorites.png)  
-_Saved favorites_
+_Your saved favorite movies_
+
+## ⚡ Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/web-react-project.git
+cd web-react-project
+```
+
+2. Install the dependencies
+
+```bash
+npm install
+```
+
+3. Create a .env file in the root:
+
+```bash
+Create a .env file in the root:
+```
+
+4. Run the development server:
+
+```bash
+npm run dev
+```
