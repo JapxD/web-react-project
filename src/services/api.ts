@@ -12,3 +12,33 @@ export const searchMovies = async (query: string) => {
   const data = await response.json();
   return data.results;
 };
+
+interface MovieDetailProps {
+  id: number;
+  title: string;
+  poster_path: string;
+  overview: string;
+  release_date: string;
+  genres: string[];
+  runtime: number;
+  vote_average: number;
+}
+
+export const fetchMovieDetail = async (id: number): Promise<MovieDetailProps> => {
+  const response = await fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`);
+  const data = await response.json();
+
+  // Map API response to only the fields your component needs
+  const movieDetail: MovieDetailProps = {
+    id: data.id,
+    title: data.title,
+    poster_path: data.poster_path,
+    overview: data.overview,
+    release_date: data.release_date,
+    genres: data.genres.map((g: { name: string }) => g.name),
+    runtime: data.runtime,
+    vote_average: data.vote_average,
+  };
+
+  return movieDetail;
+};

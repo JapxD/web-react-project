@@ -1,4 +1,5 @@
 import { useMovieContext } from "../contexts/MovieContext";
+import { Link } from "react-router-dom";
 
 interface MovieCardProps {
   movie: {
@@ -16,11 +17,18 @@ const MovieCard = ({ movie }: MovieCardProps) => {
   const onFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (!favorite) addToFavorites(movie);
-    else removeFromFavorites(movie); // remove accepts Movie object for consistency
+    else removeFromFavorites(movie);
   };
 
+  const slugify = (text: string) =>
+    text
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, "") // remove special chars
+      .replace(/\s+/g, "-"); // spaces → hyphens
+
   return (
-    <div className="col">
+    <Link className="col" to={`/movie/${movie.id}/${slugify(movie.title)}`}>
       <div
         className="card mb-2 mt-2"
         style={{ width: "15rem", position: "relative" }}
@@ -70,7 +78,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
           </p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

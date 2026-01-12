@@ -1,7 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
 import { MovieProvider } from "./contexts/MovieContext";
+import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
+import MovieDetail from "./pages/MovieDetail";
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/favorites" element={<Favorites />}></Route>
+            <Route path="/movie/:id/:slug" element={<MovieDetail />}></Route>
             <Route
               path="*"
               element={
