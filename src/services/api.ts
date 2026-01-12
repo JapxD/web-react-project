@@ -17,6 +17,7 @@ interface MovieDetailProps {
   id: number;
   title: string;
   poster_path: string;
+  backdrop_path: string;
   overview: string;
   release_date: string;
   genres: string[];
@@ -33,6 +34,7 @@ export const fetchMovieDetail = async (id: number): Promise<MovieDetailProps> =>
     id: data.id,
     title: data.title,
     poster_path: data.poster_path,
+    backdrop_path: data.backdrop_path,
     overview: data.overview,
     release_date: data.release_date,
     genres: data.genres.map((g: { name: string }) => g.name),

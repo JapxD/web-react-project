@@ -7,6 +7,7 @@ interface MovieDetailProps {
   id: number;
   title: string;
   poster_path: string;
+  backdrop_path: string;
   overview: string;
   release_date: string;
   genres: string[];
@@ -64,11 +65,14 @@ const MovieDetail = () => {
         <div>Movie not found</div>
       ) : (
         <div>
-          <h3>{movie.title}</h3>
-          <img
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-            alt={movie.title}
-          />
+          <h3 className="text-bold border-bottom">{movie.title}</h3>
+          <div className="col-4">
+            <img
+              className="img-fluid img-thumbnail"
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt={movie.title}
+            />
+          </div>
           <p>Genres: {movie.genres.join(", ")}</p>
           <p>
             Runtime: {movie.runtime} min | Rating: {movie.vote_average}/10
