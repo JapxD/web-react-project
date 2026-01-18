@@ -21,7 +21,7 @@ const Navigation = ({
     setSearchQuery(e.target.value);
   };
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary mb-2 mt-2">
+    <nav className="navbar navbar-expand-lg bg-outline-primary mb-2 mt-2">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
           My Movies
@@ -69,7 +69,7 @@ const Navigation = ({
               value={searchQuery}
               onChange={onInputChange}
             />
-            <button className="btn btn-outline-success" type="submit">
+            <button className="btn btn-outline-primary" type="submit">
               Search
             </button>
           </form>
