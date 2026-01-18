@@ -40,8 +40,6 @@ const MovieDetail = () => {
         if (slug !== correctSlug) {
           navigate(`/movie/${id}/${correctSlug}`, { replace: true });
         }
-        console.log(movie);
-
         setMovie(movieDetail);
       } catch (err) {
         console.error(err);
@@ -97,8 +95,14 @@ const MovieDetail = () => {
                     <ProgressCircle
                       progress={Math.round(movie.vote_average * 10)}
                     />
-                    <div className="genre-container">
-                      <h3 style={{ color: "white" }}>Genres:</h3>
+                    <div className="genre-container pb-1">
+                      <h3
+                        style={{
+                          color: "white",
+                        }}
+                      >
+                        Genres:
+                      </h3>
                       <div className="genres">
                         {movie.genres.map((genre, index) => (
                           <GenreBadge genre={genre} key={index} />

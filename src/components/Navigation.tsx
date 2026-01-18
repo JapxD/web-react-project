@@ -61,17 +61,21 @@ const Navigation = ({
             </li>
           </ul>
           <form className="d-flex" role="search" onSubmit={onSubmit}>
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              value={searchQuery}
-              onChange={onInputChange}
-            />
-            <button className="btn btn-outline-primary" type="submit">
-              Search
-            </button>
+            {handleSearch && (
+              <>
+                <input
+                  className="form-control me-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                  value={searchQuery}
+                  onChange={onInputChange}
+                />
+                <button className="btn btn-outline-primary" type="submit">
+                  Search
+                </button>
+              </>
+            )}
           </form>
         </div>
       </div>
