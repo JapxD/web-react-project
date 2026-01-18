@@ -2,6 +2,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchMovieDetail } from "../services/api";
 import Navigation from "../components/Navigation";
+import ProgressCircle from "../components/ProgressCircle";
+import GenreBadge from "../components/GenreBadge";
+import "../css/MovieDetail.css";
 
 interface MovieDetailProps {
   id: number;
@@ -13,6 +16,7 @@ interface MovieDetailProps {
   genres: string[];
   runtime: number;
   vote_average: number;
+  tagline: string;
 }
 
 const MovieDetail = () => {
@@ -36,6 +40,7 @@ const MovieDetail = () => {
         if (slug !== correctSlug) {
           navigate(`/movie/${id}/${correctSlug}`, { replace: true });
         }
+        console.log(movie);
 
         setMovie(movieDetail);
       } catch (err) {
@@ -65,18 +70,46 @@ const MovieDetail = () => {
         <div>Movie not found</div>
       ) : (
         <div>
-          <h3 className="text-bold border-bottom">{movie.title}</h3>
-          <div className="col-4">
-            <img
-              className="img-fluid img-thumbnail"
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-            />
+          <div
+            className="movie-detail-banner"
+            style={{
+              backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.backdrop_path})`,
+            }}
+          >
+            <div className="container">
+              <div className="row movie-detail-hero p-5">
+                <div className="col-4">
+                  <img
+                    className="movie-detail-poster"
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                  />
+                </div>
+                <div className="col-8">
+                  <div className="movie-detail-title">
+                    <h3>{movie.title}</h3>
+                    <h4>
+                      ({movie.release_date && movie.release_date.slice(0, 4)})
+                    </h4>
+                  </div>
+                  <p className="movie-detail-overview">{movie.overview}</p>
+                  <div className="movie-detail-info">
+                    <ProgressCircle
+                      progress={Math.round(movie.vote_average * 10)}
+                    />
+                    <div className="genre-container">
+                      <h3 style={{ color: "white" }}>Genres:</h3>
+                      <div className="genres">
+                        {movie.genres.map((genre, index) => (
+                          <GenreBadge genre={genre} key={index} />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <p>Genres: {movie.genres.join(", ")}</p>
-          <p>
-            Runtime: {movie.runtime} min | Rating: {movie.vote_average}/10
-          </p>
         </div>
       )}
     </>

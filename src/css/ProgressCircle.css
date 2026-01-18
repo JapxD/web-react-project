@@ -1,0 +1,51 @@
+
+.progress-bar-circle{
+  transform: scale(1);
+  transition: transform 0.1s ease-in;
+}
+
+
+.progress-bar-circle:hover{
+  transform: scale(1.1);
+}
+
+
+.progress-bar-bg{
+  fill: darkblue;
+  r: 15.915;
+  stroke-dashoffset: 25;
+  transform: translate(18px, 18px);
+  z-index: -1;
+}
+
+.progress-bar-progress-bg{
+  fill: none;
+  stroke: darkgreen;
+  r: 15.915;
+  transform: translate(18px, 18px) scale(-0.80);
+  stroke-width: 3;
+}
+
+.progress-bar-progress{
+  fill: none;
+  stroke: lightgreen;
+  stroke-width: 3;
+  r: 15.915;
+  stroke-dashoffset: 75;
+  transform: translate(18px, 18px) scale(-0.80);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.progress-bar-circle{
+  height: 100px;
+  width: 100px;
+}
+
+.progress-text{
+  transform: translate(18px, 18px);
+  fill: white;
+  font-weight: bold;
+  font-size: 0.5rem;
+  alignment-baseline: middle;
+  text-anchor: middle;
+}

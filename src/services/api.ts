@@ -23,6 +23,7 @@ interface MovieDetailProps {
   genres: string[];
   runtime: number;
   vote_average: number;
+  tagline: string;
 }
 
 export const fetchMovieDetail = async (id: number): Promise<MovieDetailProps> => {
@@ -40,6 +41,7 @@ export const fetchMovieDetail = async (id: number): Promise<MovieDetailProps> =>
     genres: data.genres.map((g: { name: string }) => g.name),
     runtime: data.runtime,
     vote_average: data.vote_average,
+    tagline: data.tagline
   };
 
   return movieDetail;
