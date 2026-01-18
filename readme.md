@@ -37,6 +37,9 @@ _Browse popular movies and search_
 ![Favorites Page](./screenshots/favorites.png)  
 _Your saved favorite movies_
 
+![Movie Detail Page](./screenshots/detail.png)  
+_See movie details_
+
 ## ⚡ Installation
 
 1. Clone the repository:
